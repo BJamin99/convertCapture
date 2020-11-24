@@ -59,11 +59,14 @@ def main():
                     else:
                         l_user_suffix = ""
                     line_info[l] = {'color': scene[i][l]['color'], 'username': scene[i][l]['username'] + l_user_suffix}
-                #Now that we've saved the unsigned int version of the color, convert color to the 2's complement signed int version
-                if scene[i][l]['color'] > 2**31:
-                    scene[i][l]['color'] -= 2**32
-                if scene[i][l]['aux_asn_flags'] > 2**31:
-                    scene[i][l]['aux_asn_flags'] -= 2**32
+                    #Now that we've saved the unsigned int version of the color, convert color to the 2's complement signed int version
+                    if scene[i][l]['color'] > 2**31:
+                        scene[i][l]['color'] -= 2**32
+                    if scene[i][l]['aux_asn_flags']:
+                        scene[i][l]['aux_asn_flags'] = -1
+                    if scene[i][l]['fx_asn_flags']:
+                        scene[i][l]['fx_asn_flags'] = 255
+                    
                     
 
         #print(line_info.keys())
